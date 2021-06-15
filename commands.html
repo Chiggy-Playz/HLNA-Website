@@ -27,13 +27,7 @@
             color: white;
         }
 
-        #nav-item-under :hover {
-            border: solid 2px #00ffff;
-        }
-
-        #nav-item :hover {
-            color: #00ffff;
-        }
+      
     </style>
 
     <!-- JS Definitions -->
@@ -80,8 +74,8 @@
 
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
             <a href="/" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
-                <img src="https://cdn.discordapp.com/avatars/813092740270260235/a5a9e316052b029f4151d2013158ef67.png?size=2048"
-                    width="64" height="64" id="logo">
+                <!-- <img id="logo"> -->
+                <div style="width: 64px;height: 64px;" id="logo"></div>
                 <span>HLN-A</span>
             </a>
 
@@ -121,7 +115,8 @@
 
     <div class="hlna-logo d-flex justify-content-center container-sm">
         <img class="img-fluid" id="hlna-logo" style="position: fixed;"
-            src="https://cdn.discordapp.com/avatars/813092740270260235/a5a9e316052b029f4151d2013158ef67.png?size=512">
+            src="https://cdn.discordapp.com/avatars/813092740270260235/a5a9e316052b029f4151d2013158ef67.png?size=512"
+            >
     </div>
 
 
@@ -148,6 +143,9 @@
         document.onscroll = () => {
             if (!ani.began){
                 ani.play()
+            } else if (ani.reversed){
+                ani.reverse()
+                ani.play()
             }
             
 
@@ -170,6 +168,8 @@
                     // navbar_brand.append(img_tag, span_tag)
                 }
             } else {
+                ani.reverse()
+                ani.play()
                 if (header_container.className.includes(' sticky-top')) {
                     header_container.className = header_container.className.replace(' sticky-top', '')
                 }
