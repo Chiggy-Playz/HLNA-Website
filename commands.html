@@ -137,8 +137,15 @@
         offsetX = nav_logo_rect.left - logo_rect.left
         offsetY = nav_logo_rect.top - logo_rect.top
 
-        var tl = anime.timeline({ autoplay: false });
-        let ani = anime({ targets: '#hlna-logo', translateX: offsetX-96, translateY: offsetY-96, scale: 0.25, autoplay:false,duration:500, easing:'linear'} )
+        // var tl = anime.timeline({ autoplay: false });
+        let ani = anime({ targets: '#hlna-logo', // What to move
+                          translateX: offsetX-96, // How much to move x
+                          translateY: offsetY-96,  // How much to move y
+                          scale: 0.25, // To reduce its size
+                          autoplay:false, // duh
+                          duration:500, // How much time should it take for animation to complete
+                          easing:'linear' // So it doesnt bounce at end of animation
+                        } )
         
 
         document.onscroll = () => {
@@ -150,8 +157,8 @@
             }
             
 
-            const percentage = getScrollPercent();
-            tl.seek(tl.duration * (percentage * 0.01));
+            // const percentage = getScrollPercent();
+            // tl.seek(tl.duration * (percentage * 0.01));
 
             if (!isScrolledIntoView(start_elem)) {
                 if (!header_container.className.includes(' sticky-top')) {
