@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <!-- Meta Tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous"></script>
+
+    <!-- AnimeJS -->
+    <script src="anime.min.js"></script>
+
+    <!-- Custom CSS -->
+    <style>
+        body {
+            background-color: #2A2D32;
+            color: white;
+        }
+
+        #nav-item-under :hover {
+            border: solid 2px #00ffff;
+        }
+
+        #nav-item :hover {
+            color: #00ffff;
+        }
+    </style>
+
+    <!-- JS Definitions -->
+    <script>
+        function getScrollPercent() {
+            var h = document.documentElement,
+                b = document.body,
+                st = 'scrollTop',
+                sh = 'scrollHeight';
+            return (h[st] || b[st]) / ((h[sh] || b[sh]) - h.clientHeight) * 100;
+        }
+
+        function isScrolledIntoView(el) {
+            var rect = el.getBoundingClientRect();
+            var elemTop = rect.top;
+            var elemBottom = rect.bottom;
+
+            // Only completely visible elements return true:
+            var isVisible = (elemTop >= 0) && (elemBottom <= window.innerHeight);
+            // Partially visible elements return true:
+            //isVisible = elemTop < window.innerHeight && elemBottom >= 0;
+            return isVisible;
+        }
+
+
+
+        function getScrollPercent() {
+            var h = document.documentElement,
+                b = document.body,
+                st = 'scrollTop',
+                sh = 'scrollHeight';
+            return (h[st] || b[st]) / ((h[sh] || b[sh]) - h.clientHeight) * 100;
+        }
+    </script>
+    <script></script>
+
+</head>
+
+<body>
+    <div class="start"></div>
+
+
+    <div class="px-3 py-2 text-white header-container">
+
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <a href="/" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
+                <img src="https://cdn.discordapp.com/avatars/813092740270260235/a5a9e316052b029f4151d2013158ef67.png?size=2048"
+                    width="64" height="64" id="logo">
+                <span>HLN-A</span>
+            </a>
+
+            <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
+                <li id="nav-item">
+                    <a href="index.html" class="nav-link text-white text-center">
+
+                        <i class="bi bi-house d-block mx-auto mb-1" style="font-size: 1.5rem;"></i>
+                        Home
+                    </a>
+                </li>
+                <li id="nav-item">
+                    <a href="#" class="nav-link text-secondary text-center">
+                        <i class="bi bi-keyboard d-block mx-auto mb-1" style="font-size: 1.5rem;"></i>
+                        Commands
+                    </a>
+                </li>
+                <li id="nav-item">
+                    <a href="https://discord.gg/AytU6MUuQc" class="nav-link text-white text-center">
+                        <i class="bi bi-question-circle d-block mx-auto mb-1" style="font-size: 1.5rem;"></i>
+                        Support
+                    </a>
+                </li>
+                <li id="nav-item">
+                    <a href="https://discord.com/oauth2/authorize?client_id=813092740270260235&scope=bot%20applications.commands&permissions=268790856"
+                        class="nav-link text-white text-center">
+                        <i class="bi bi-plus-circle d-block mx-auto mb-1" style="font-size: 1.5rem;"></i>
+                        Invite
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+
+    </div>
+
+
+    <div class="hlna-logo d-flex justify-content-center container-sm">
+        <img class="img-fluid" id="hlna-logo" style="position: fixed;"
+            src="https://cdn.discordapp.com/avatars/813092740270260235/a5a9e316052b029f4151d2013158ef67.png?size=512">
+    </div>
+
+
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>lmao
+
+
+
+    <script>
+        // anime({targets:'#hlna-logo', translateX:offsetX-96, translateY:offsetY-95, scale:0.25})
+        var header_container = document.getElementsByClassName('header-container')[0]
+        var start_elem = document.getElementsByClassName('start')[0]
+
+        var nav_logo = document.getElementById('logo')
+        var nav_logo_rect = nav_logo.getBoundingClientRect();
+        var logo_rect = document.getElementById("hlna-logo").getBoundingClientRect()
+
+        offsetX = nav_logo_rect.left - logo_rect.left
+        offsetY = nav_logo_rect.top - logo_rect.top
+
+        var tl = anime.timeline({ autoplay: false });
+        let ani = anime({ targets: '#hlna-logo', translateX: offsetX-96, translateY: offsetY-96, scale: 0.25, autoplay:false,duration:500, easing:'linear'} )
+        
+
+        document.onscroll = () => {
+            if (!ani.began){
+                ani.play()
+            }
+            
+
+            const percentage = getScrollPercent();
+            tl.seek(tl.duration * (percentage * 0.01));
+
+            if (!isScrolledIntoView(start_elem)) {
+                if (!header_container.className.includes(' sticky-top')) {
+                    console.log("Scrolled out of view")
+
+                    // navbar_brand.setAttribute('class', 'd-flex align-items-center mb-3 mb-md-0 me-md-auto text-decoration-none align-middle')
+                    // navbar_brand.setAttribute('style', 'margin-right: 10%')
+                    // const img_tag = Object.assign(document.createElement('img'), { src: 'https://cdn.discordapp.com/avatars/813092740270260235/a5a9e316052b029f4151d2013158ef67.png?size=32' });
+                    // const span_tag = Object.assign(document.createElement('span'), { className: 'fs-4 ml-1', textContent: 'HLN-A' })
+                    // const logo_rect = document.getElementById('hlna-logo').getBoundingClientRect()
+                    // const navbar_rect = navbar_brand.getBoundingClientRect()
+                    // navbar_brand.innerHTML += '<img src="">'
+                    // navbar_brand.innerHTML += '<span class="fs-4 ml-1">HLN-A</span>'
+                    header_container.className += " sticky-top"
+                    // navbar_brand.append(img_tag, span_tag)
+                }
+            } else {
+                if (header_container.className.includes(' sticky-top')) {
+                    header_container.className = header_container.className.replace(' sticky-top', '')
+                }
+            }
+
+
+
+        }
+
+    </script>
+</body>
+
+</html>
