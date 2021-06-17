@@ -67,7 +67,7 @@
         //         if ((getHeight() > 1350) & (getWidth() > 1010)) {
         //             check = false
         //         }
-                   
+
         //     }
 
         //     // Hotfix for small screens
@@ -183,6 +183,13 @@
 
 
     <script>
+        // This prevents the page from scrolling down to where it was previously.
+        if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+        }
+        // This is needed if the user scrolls down during page load and you want to make sure the page is scrolled to the top once it's fully loaded. This has Cross-browser support.
+        window.scrollTo(0, 0);
+
         debug1 = document.getElementById('debug1')
         debug2 = document.getElementById('debug2')
 
@@ -194,12 +201,12 @@
         const og_nav_links = document.getElementById('navbar-links')
         const og_nav_links_rect = og_nav_links.getBoundingClientRect()
 
-        function checkMobile(){
+        function checkMobile() {
 
             var height_difference = Math.abs(nav_a_rect.y - og_nav_links_rect.y)
             if (height_difference > 64) {
                 return true
-            }   
+            }
             return false
         }
 
