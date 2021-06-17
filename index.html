@@ -68,6 +68,12 @@
                     check = false
                 }
             }
+
+            // Hotfix for small screens
+            if (getWidth() > 960){
+                check = false
+            }
+
             return check;
 
         };
