@@ -23,9 +23,14 @@
 
     <!-- Custom CSS -->
     <style>
+        html {
+            height: 100vh;
+        }
+
         body {
             background-color: #2A2D32;
             color: white;
+            height: 500vh;
         }
 
         #nav-item :hover {
@@ -177,8 +182,13 @@
         <h1 class="display-1" id="hlna-heading" style="position: fixed;">HLN-A</h1>
     </div>
 
-
+    lmao
     <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>lmao
+    <!-- <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>lmao
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>lmao
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>lmao
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>lmao
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>lmao -->
 
 
 
@@ -193,6 +203,9 @@
         debug1 = document.getElementById('debug1')
         debug2 = document.getElementById('debug2')
 
+        // To keep track of animation
+        const began = false
+        
         // placeholder for logo and heading
         const nav_a = document.getElementsByClassName('nav-a')[0]
         const nav_og_links = document.getElementById("navbar-links")
@@ -247,11 +260,13 @@
 
             navbar_offsetX = 0
             navbar_offsetY = 0
+            scroll_speed = 0.1
 
         } else {
             targetX = getWidth() - nav_links_rect.width - nav_a_width
             navbar_offsetX = targetX - nav_links_rect.x
             navbar_offsetY = 0
+            scroll_speed = 0.3
         }
 
 
@@ -293,41 +308,47 @@
 
                 sub_header_cont.append(nav_a, nav_links)
 
-                logo_ani.play()
-                heading_ani.play()
-                navbar_ani.play()
+                // logo_ani.play()
+                // heading_ani.play()
+                // navbar_ani.play()
 
             } else if (logo_ani.reversed) {
                 nav_a.remove()
-                logo_ani.reverse()
-                logo_ani.play()
+                logo_ani.began = false
+                // logo_ani.reverse()
+                // logo_ani.play()
 
-                heading_ani.reverse()
-                heading_ani.play()
+                // heading_ani.reverse()
+                // heading_ani.play()
 
-                navbar_ani.reverse()
-                navbar_ani.play()
+                // navbar_ani.reverse()
+                // navbar_ani.play()
             }
 
 
-            // const percentage = getScrollPercent();
-            // tl.seek(tl.duration * (percentage * 0.01));
+            const percentage = getScrollPercent();
+            logo_ani.seek(logo_ani.duration * (percentage * scroll_speed));
+            heading_ani.seek(heading_ani.duration * (percentage * scroll_speed));
+            navbar_ani.seek(navbar_ani.duration * (percentage * scroll_speed));
+
+
 
             if (!isScrolledIntoView(start_elem)) {
+                sub_header_cont.append(nav_a, nav_links)
                 if (!header_container.className.includes(' sticky-top')) {
 
                     header_container.className += " sticky-top"
                 }
             } else {
                 nav_a.remove()
-                logo_ani.reverse()
-                logo_ani.play()
+                // logo_ani.reverse()
+                // logo_ani.play()
 
-                heading_ani.reverse()
-                heading_ani.play()
+                // heading_ani.reverse()
+                // heading_ani.play()
 
-                navbar_ani.reverse()
-                navbar_ani.play()
+                // navbar_ani.reverse()
+                // navbar_ani.play()
 
                 if (header_container.className.includes(' sticky-top')) {
                     header_container.className = header_container.className.replace(' sticky-top', '')
